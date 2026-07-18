@@ -1,0 +1,52 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  overflow: hidden;
+}
+
+/* Drone pulse animation injected by Leaflet divIcon */
+:global(@keyframes pulse-ring) {
+  0%   { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+.posOverlay {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  z-index: 400;
+  background: rgba(5,13,26,0.88);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 16px;
+  backdrop-filter: blur(10px);
+}
+
+.posLabel {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--cyan);
+  letter-spacing: 1px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.posCoords {
+  display: flex;
+  gap: 20px;
+}
+
+.posKey {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 2px;
+}
+
+.posVal {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  color: var(--text);
+}
