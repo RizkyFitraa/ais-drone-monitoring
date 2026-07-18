@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="380" viewBox="0 0 600 380">
+  <defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#064e3b"/><stop offset="100%" style="stop-color:#0f172a"/></linearGradient></defs>
+  <rect width="600" height="380" fill="url(#g)"/>
+  <path d="M120 200 L180 130 L240 200 Z" fill="rgba(5,150,105,.2)" stroke="rgba(5,150,105,.5)" stroke-width="2"/>
+  <line x1="180" y1="130" x2="180" y2="80" stroke="rgba(5,150,105,.4)" stroke-width="2"/>
+  <circle cx="180" cy="100" r="10" fill="rgba(5,150,105,.3)"/>
+  <rect x="300" y="150" width="200" height="80" rx="6" fill="rgba(5,150,105,.1)" stroke="rgba(5,150,105,.3)" stroke-width="1"/>
+  <circle cx="320" cy="170" r="3" fill="rgba(5,150,105,.6)"/>
+  <circle cx="340" cy="170" r="3" fill="rgba(5,150,105,.6)"/>
+  <circle cx="360" cy="170" r="3" fill="rgba(5,150,105,.6)"/>
+  <text x="300" y="300" text-anchor="middle" fill="rgba(255,255,255,.85)" font-family="Arial,sans-serif" font-size="22" font-weight="bold">BlueWave Fishing Fleet</text>
+  <text x="300" y="325" text-anchor="middle" fill="rgba(255,255,255,.4)" font-family="Arial,sans-serif" font-size="12">Screenshot Preview — Tracking Armada</text>
+</svg>

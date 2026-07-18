@@ -1,0 +1,73 @@
+.nmea {
+  background: var(--navy3);
+  border: 1px solid rgba(255,179,0,0.2);
+  border-radius: 8px;
+  padding: 11px 13px;
+  margin-bottom: 10px;
+}
+
+.nmeaTitle {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: var(--amber);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.nmeaSentence {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: rgba(255,179,0,0.65);
+  word-break: break-all;
+  line-height: 1.7;
+  margin-bottom: 6px;
+}
+
+.nmeaPayload {
+  color: var(--cyan);
+}
+
+.nmeaMeta {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.nmeaMMSI {
+  color: var(--amber);
+}
+
+.decoded {
+  background: var(--navy3);
+  border: 1px solid rgba(255,179,0,0.2);
+  border-radius: 8px;
+  padding: 11px 13px;
+}
+
+.decodedTitle {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: var(--amber);
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.field {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.field:last-child { border-bottom: none; }
+
+.fieldKey {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.fieldVal {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--amber);
+}

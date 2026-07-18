@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="380" viewBox="0 0 600 380">
+  <defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#7c2d12"/><stop offset="100%" style="stop-color:#0f172a"/></linearGradient></defs>
+  <rect width="600" height="380" fill="url(#g)"/>
+  <path d="M300 60 L340 100 L320 100 L320 200 L280 200 L280 100 L260 100 Z" fill="rgba(234,88,12,.25)" stroke="rgba(234,88,12,.5)" stroke-width="2"/>
+  <circle cx="300" cy="50" r="12" fill="none" stroke="rgba(234,88,12,.5)" stroke-width="2"/>
+  <line x1="300" y1="62" x2="300" y2="90" stroke="rgba(234,88,12,.4)" stroke-width="2"/>
+  <text x="300" y="300" text-anchor="middle" fill="rgba(255,255,255,.85)" font-family="Arial,sans-serif" font-size="22" font-weight="bold">SAR Coordination Platform</text>
+  <text x="300" y="325" text-anchor="middle" fill="rgba(255,255,255,.4)" font-family="Arial,sans-serif" font-size="12">Screenshot Preview — Koordinasi SAR</text>
+</svg>
