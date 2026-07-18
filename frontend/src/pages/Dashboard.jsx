@@ -474,9 +474,39 @@ export default function Dashboard({ onLogout, onUsers }) {
       { id:'layers',    label:'Layers', Icon:Ico.layers, badge: hiddenN || null },
     ]
 
+    const dItems = drone ? [
+      { l:'Mode', v: drone.mode || '—', c:'var(--green)' },
+      { l:'Alt',  v:`${Number(drone.alt||0).toFixed(0)}m`, c:'var(--blue2)' },
+      { l:'Spd',  v:`${Number(drone.sog||0).toFixed(1)}m/s`, c:'var(--t1)' },
+      { l:'Head', v:`${Number(drone.heading||0).toFixed(0)}°`, c:'var(--t1)' },
+      { l:'Bat',  v:`${Math.round(drone.battery||0)}%`,
+        c: drone.battery>50?'var(--green)':drone.battery>25?'var(--amber)':'var(--red)' },
+      { l:'RSSI', v:`${Math.round(drone.rssi||0)} dBm`, c:'var(--t1)' },
+      { l:'SAT',  v:`${drone.satellites||0}`, c:'var(--teal)' },
+    ] : []
+
     return (
       <div style={{display:'flex',flexDirection:'column',height:'100vh',background:'var(--bg)',overflow:'hidden'}}>
         {Topbar}
+
+        {/* Persistent drone bar — always visible */}
+        {drone && <div style={{flexShrink:0,display:'flex',alignItems:'center',gap:4,
+          padding:'5px 8px',background:'var(--bg2)',borderBottom:'1px solid var(--br)',
+          overflowX:'auto',fontFamily:'var(--fm)',cursor:'pointer'}}
+          onClick={() => mapRef.current?.focusDrone()}>
+          <div style={{width:24,height:24,background:'var(--blue-bg)',border:'1px solid var(--blue-br)',
+            borderRadius:6,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
+            <Ico.drone size={11} c="var(--blue2)" sw={1.5}/>
+          </div>
+          {dItems.map(s => (
+            <div key={s.l} style={{display:'flex',alignItems:'center',gap:3,
+              background:'var(--bg3)',border:'1px solid var(--br)',borderRadius:6,padding:'2px 6px',flexShrink:0}}>
+              <span style={{fontSize:7,color:'var(--t3)',textTransform:'uppercase'}}>{s.l}</span>
+              <span style={{fontSize:10,fontWeight:600,color:s.c,whiteSpace:'nowrap'}}>{s.v}</span>
+            </div>
+          ))}
+        </div>}
+
         <div style={{flex:1,position:'relative',overflow:'hidden',paddingBottom:'var(--bottombar-h)'}}>
 
           {/* Map */}
@@ -500,24 +530,6 @@ export default function Dashboard({ onLogout, onUsers }) {
                   color:'var(--amber)',boxShadow:'0 2px 6px rgba(0,0,0,.08)'}}>DEMO</div>
               )}
             </div>
-            {drone && <div style={{position:'absolute',bottom:12,left:8,zIndex:400,
-              background:'rgba(255,255,255,.96)',backdropFilter:'blur(12px)',
-              border:'1px solid var(--br)',borderRadius:12,padding:'8px 12px',
-              boxShadow:'var(--sh2)',fontFamily:'var(--fm)'}}>
-              <div style={{fontSize:8,color:'var(--t3)',marginBottom:3,letterSpacing:'.5px',textTransform:'uppercase'}}>Drone</div>
-              <div style={{display:'flex',gap:12}}>
-                {[
-                  { l:'Bat',  v:`${Math.round(drone.battery||0)}%`, c:drone.battery>30?'var(--green)':'var(--red)' },
-                  { l:'Alt',  v:`${Number(drone.alt||0).toFixed(0)}m`,                c:'var(--blue2)' },
-                  { l:'Mode', v: drone.mode || '—',                                   c:'var(--teal)'  },
-                ].map(s => (
-                  <div key={s.l}>
-                    <div style={{fontSize:7,color:'var(--t3)',textTransform:'uppercase'}}>{s.l}</div>
-                    <div style={{fontSize:11,fontWeight:500,color:s.c}}>{s.v}</div>
-                  </div>
-                ))}
-              </div>
-            </div>}
             <ErrorBoundary>
               <MapView ref={mapRef} drone={vis.drone!==false?drone:null}
                 gps={gps} tcpConns={connConfig?.tcp || []} aisTargets={mapVessels} mapMode={mapMode}/>
@@ -630,28 +642,30 @@ export default function Dashboard({ onLogout, onUsers }) {
           <aside style={{background:'var(--bg2)',borderLeft:'1px solid var(--br)',
             display:'flex',flexDirection:'column',overflow:'hidden'}}>
 
-            {drone && <div style={{padding:'8px 12px',borderBottom:'1px solid var(--br)',
-              display:'flex',alignItems:'center',gap:8,flexShrink:0,
-              cursor:'pointer',transition:'background .15s'}}
+            {/* Persistent drone bar — always visible */}
+            {drone && <div style={{padding:'6px 10px',borderBottom:'1px solid var(--br)',
+              flexShrink:0,cursor:'pointer',display:'flex',flexWrap:'wrap',gap:3,
+              fontFamily:'var(--fm)',alignItems:'center'}}
               onClick={() => mapRef.current?.focusDrone()}
               onMouseEnter={e => e.currentTarget.style.background = 'var(--bg3)'}
               onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
-              <div style={{width:26,height:26,background:'var(--blue-bg)',
-                border:'1px solid var(--blue-br)',borderRadius:7,
-                display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
-                <Ico.drone size={13} c="var(--blue2)" sw={1.5}/>
+              <div style={{width:22,height:22,background:'var(--blue-bg)',border:'1px solid var(--blue-br)',
+                borderRadius:6,display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0}}>
+                <Ico.drone size={10} c="var(--blue2)" sw={1.5}/>
               </div>
-              <div style={{flex:1,minWidth:0}}>
-                <div style={{fontSize:12,fontWeight:700,color:'var(--t1)',letterSpacing:'-.2px',
-                  overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>
-                  {drone.callsign}
-                </div>
-                <div style={{fontFamily:'var(--fm)',fontSize:8,color:'var(--t3)'}}>{drone.mmsi}</div>
-              </div>
-              <div style={{fontFamily:'var(--fm)',fontSize:10,fontWeight:500,
-                color:drone.battery>30?'var(--green)':'var(--red)'}}>
-                {Math.round(drone.battery || 0)}%
-              </div>
+              <div style={{fontSize:10,fontWeight:600,color:'var(--t1)',marginRight:4}}>{drone.callsign}</div>
+              {[
+                { l:'Mode', v: drone.mode || '—', c:'var(--green)' },
+                { l:'Alt',  v:`${Number(drone.alt||0).toFixed(0)}m`, c:'var(--blue2)' },
+                { l:'Spd',  v:`${Number(drone.sog||0).toFixed(1)}m/s`, c:'var(--t1)' },
+                { l:'Bat',  v:`${Math.round(drone.battery||0)}%`,
+                  c: drone.battery>50?'var(--green)':drone.battery>25?'var(--amber)':'var(--red)' },
+              ].map(s => (
+                <span key={s.l} style={{fontSize:8,color:s.c,background:'var(--bg3)',
+                  border:'1px solid var(--br)',borderRadius:4,padding:'1px 5px',whiteSpace:'nowrap'}}>
+                  {s.l} <strong>{s.v}</strong>
+                </span>
+              ))}
             </div>}
 
             {/* Tab bar */}
