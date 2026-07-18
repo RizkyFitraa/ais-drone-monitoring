@@ -11,28 +11,6 @@
 
 // ─── DRONE ────────────────────────────────────────────────────────────────────
 export const INITIAL_DRONE = {
-  mmsi:        '999000001',
-  callsign:    'DRONE-AIS',
-  lat:         -7.1870,
-  lon:         112.7450,
-  alt:         92.0,
-  sog:         5.4,
-  cog:         270,
-  battery:     82,
-  rssi:        -58,
-  satellites:  16,
-  mode:        'LOITER',
-  roll:        0.8,
-  pitch:       -0.4,
-  yaw:         270.0,
-  heading:     270,
-  groundspeed: 5.2,
-  airspeed:    5.5,
-  vertspeed:   0.0,
-  throttle:    38,
-  flighttime:  '00:09:14',
-  distance:    870,
-  ts:          '08:12:44',
 }
 
 // ─── 30 VESSEL DUMMY — Pantai Utara Surabaya / Tanjung Perak / Selat Madura ──
