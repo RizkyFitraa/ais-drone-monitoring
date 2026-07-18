@@ -50,6 +50,8 @@ function SourceCard({ icon, title, badge, connected, enabled, onToggle, children
 
 export default function SettingsPage({ onBack, connConfig, status, wsState, applyConfig, rawLines, wsRef }) {
   const [cfg,setCfg]=useState(null),[saved,setSaved]=useState(false),[ports,setPorts]=useState([]),[testing,setTesting]=useState(false),[testR,setTestR]=useState(null)
+  const [isMobile,setIsMobile]=useState(window.innerWidth<768)
+  useEffect(()=>{const h=()=>setIsMobile(window.innerWidth<768);window.addEventListener('resize',h);return ()=>window.removeEventListener('resize',h)},[])
   const [paused,setPaused]=useState(false)
   const [frozenLines,setFrozenLines]=useState(null)
   const [searchTerm,setSearchTerm]=useState('')
@@ -124,7 +126,7 @@ export default function SettingsPage({ onBack, connConfig, status, wsState, appl
         </div>
       </header>
 
-      <div style={{flex:1,display:'grid',gridTemplateColumns:'1fr 440px',overflow:'hidden'}}>
+      <div style={{flex:1,display:'grid',gridTemplateColumns:isMobile?'1fr':'1fr 440px',overflow:'hidden'}}>
         {/* Sources */}
         <div style={{overflowY:'auto',padding:'14px 14px 14px 16px',display:'flex',flexDirection:'column',gap:8}}>
           <SourceCard icon="SER" title="dAISy AIS Receiver" badge="USB Serial" connected={st.serial?.connected} enabled={cfg.serial.enabled} onToggle={v=>patch('serial','enabled',v)}>
@@ -242,7 +244,7 @@ export default function SettingsPage({ onBack, connConfig, status, wsState, appl
         </div>
 
         {/* Raw log */}
-        <div style={{background:'var(--bg)',borderLeft:'1px solid var(--b1)',display:'flex',flexDirection:'column',overflow:'hidden'}}>
+        <div style={{background:'var(--bg)',borderLeft:isMobile?'none':'1px solid var(--b1)',display:'flex',flexDirection:'column',overflow:'hidden'}}>
           <div style={{display:'flex',alignItems:'center',gap:6,padding:'7px 10px',borderBottom:'1px solid var(--b1)',flexShrink:0,flexWrap:'wrap'}}>
             <span style={{fontFamily:'DM Mono,monospace',fontSize:8,color:'var(--blue2)',letterSpacing:'1px',textTransform:'uppercase',flexShrink:0}}>Raw NMEA</span>
             <input value={searchTerm} onChange={e=>setSearchTerm(e.target.value)} placeholder="Filter..."
