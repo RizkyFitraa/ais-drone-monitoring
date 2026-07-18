@@ -2,7 +2,7 @@
   import { INITIAL_DRONE, INITIAL_AIS_TARGETS } from '../data/mockData.jsx'
   import { sanitizeDrone, sanitizeVessel, sanitizeSAR, sanitizeGPS } from '../utils/helpers.jsx'
 
-const WS_URL = import.meta.env.VITE_WS_URL || 'wss://ais-drone-monitoring-production.up.railway.app'
+const WS_URL = import.meta.env.VITE_WS_URL || 'ws://localhost:3001'
 const DRONE_TIMEOUT = 30000
 
 const INITIAL_STATION = {
