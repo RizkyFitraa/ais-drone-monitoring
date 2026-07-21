@@ -635,11 +635,18 @@ export default function LandingPage({ onLogin }) {
               <button className="lp-btn-p" onClick={onLogin} style={{padding:'13px 28px',fontSize:15}}>
                 Buka Dashboard <ArrowR/>
               </button>
-              <button className="lp-btn-o"
-                onClick={() => document.getElementById('fitur')?.scrollIntoView({behavior:'smooth'})}
-                style={{padding:'12px 22px',fontSize:14}}>
-                Lihat Fitur <ChevD/>
-              </button>
+              <button
+                 className="lp-btn-o"
+                 onClick={() =>
+                   window.open(
+                     "https://drive.google.com/drive/folders/1ajke-CxK_rJjA8h4c6nfsm4qPnIk0eZv?usp=drive_link",
+                     "_blank"
+                   )
+                 }
+                 style={{ padding: "12px 22px", fontSize: 14 }}
+               >
+                 Buka Dokumentasi Pengujian <ChevD />
+               </button>
             </div>
           </div>{/* end lp-hero-l */}
 
