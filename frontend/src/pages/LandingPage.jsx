@@ -645,7 +645,7 @@ export default function LandingPage({ onLogin }) {
                  }
                  style={{ padding: "12px 22px", fontSize: 14 }}
                >
-                 Buka Dokumentasi Pengujian <ChevD />
+                 Buka Dokumentasi Pengujian <ArrowR/>
                </button>
             </div>
           </div>{/* end lp-hero-l */}
